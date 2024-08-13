@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using System.Threading;
 using System.Threading.Tasks;
 
 public class TickSystem {
@@ -29,6 +27,5 @@ public class TickSystem {
         Console.WriteLine("Tick :: " + tick);
 
     }
-
 
 }
