@@ -16,6 +16,17 @@ public class TickSystem {
         }
     }
 
+    public static void PauseTickSystem() {
+        if (tickSystemOn) {
+            StopTickSystem();
+            Console.WriteLine("Sim Paused......");
+        } else {
+            tickSystemOn = true;
+            StartTickSystem();
+            Console.WriteLine("Sim Unpaused......");
+        }
+    }
+
     public static void StopTickSystem() {
         tickSystemOn = false;
     }

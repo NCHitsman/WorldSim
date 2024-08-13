@@ -1,16 +1,51 @@
 ﻿global using System;
 
-class Program {
+class Program
+{
 
-    static void Main() {
+    private static bool runSim = true;
 
-        Console.WriteLine("Starting Sim, Press any button to turn off......");
+    static void Main()
+    {
 
-        TickSystem.StartTickSystem();
+        Console.WriteLine("Initializing Sim......");
 
-        Console.ReadKey();
+        Simulation activeSimulation = new Simulation(2);
 
-        TickSystem.StopTickSystem();
+        Console.WriteLine("Press Enter To Start Sim......");
+
+        while (runSim)
+        {
+
+            ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
+
+            switch (keyInfo.Key)
+            {
+                // Start, Pause, and End Simulation
+                case ConsoleKey.Enter:
+                    activeSimulation.StartSimulation();
+                    Console.WriteLine("Sim Running......");
+                    break;
+                case ConsoleKey.Spacebar:
+                    activeSimulation.PauseSimulation();
+                    break;
+                case ConsoleKey.Escape:
+                    activeSimulation.EndSimulation();
+                    runSim = false;
+                    Console.WriteLine("Sim Stopped......");
+                    break;
+
+                // Keys to print sim Data (temp solution until UI is made)
+                case ConsoleKey.P:
+                    activeSimulation.PrintSettlementInfo();
+                    break;
+                default:
+                    Console.WriteLine("Invalid key pressed.");
+                    break;
+            }
+
+        }
+
 
     }
 

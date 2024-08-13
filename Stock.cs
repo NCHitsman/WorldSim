@@ -5,7 +5,11 @@ using System.Linq;
 public class Stock
 {
 
-    public Dictionary<CommodityList, int> stock = ((IEnumerable<CommodityList>)Enum.GetValues(typeof(CommodityList))).ToDictionary(x => x, x => 0);
+    private Dictionary<CommodityList, int> stock;
+
+    public Stock(Dictionary<CommodityList, int> initialStock) {
+        stock = initialStock;
+    }
 
     public void AddToStock(CommodityList commodity, int value) {
         stock[commodity] += value;
@@ -13,6 +17,10 @@ public class Stock
 
     public void RemoveFromStock(CommodityList commodity, int value) { // TODO Solve what happens if removed value is > remaining commodity stock
         stock[commodity] -= value;
+    }
+
+    public int GetStockAmount(CommodityList commodity) {
+        return stock[commodity];
     }
 
 }

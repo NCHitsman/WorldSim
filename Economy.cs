@@ -8,20 +8,20 @@ public class Economy {
 
     public Economy(float intialEconomyHealth) {
         foreach (var key in commodityPrices.Keys.ToList()) {
-            commodityPrices[key] *= intialEconomyHealth;
+            commodityPrices[key] = (float)Math.Round(commodityPrices[key] * intialEconomyHealth, 1);
         }
     }
 
-    public void AdjustPrice(CommodityList commodity, float adjustmentPercentage) {
+    public void AdjustPrice(CommodityList commodity, float adjustmentPercentage) { // find solution for considering settlement stock
         commodityPrices[commodity] *= adjustmentPercentage;
     }
 
-    public float GetCommoditySellPrice(CommodityList commodity, float settlementSupply) {
-        return commodityPrices[commodity] / settlementSupply;
+    public float GetCommoditySellPrice(CommodityList commodity) {
+        return commodityPrices[commodity];
     }
 
-    public float GetCommodityBuyPrice(CommodityList commodity, float settlementDemand) {
-        return commodityPrices[commodity] * settlementDemand;
+    public float GetCommodityBuyPrice(CommodityList commodity) {
+        return commodityPrices[commodity];
     }
 
 }
