@@ -39,6 +39,9 @@ class Program
                 case ConsoleKey.P:
                     activeSimulation.PrintSettlementInfo();
                     break;
+                case ConsoleKey.A:
+                    activeSimulation.PrintAgentInfo();
+                    break;
                 default:
                     Console.WriteLine("Invalid key pressed.");
                     break;
