@@ -8,7 +8,7 @@ public class Simulation
 
     Settlement[] settlements;
 
-    List<Agent> agents = new List<Agent>();
+    Dictionary<int, Agent> agents = new Dictionary<int, Agent>();
 
 
     public Simulation(int settlementCount)
@@ -19,7 +19,7 @@ public class Simulation
 
         foreach (Settlement settlement in settlements)
         {
-            agents.AddRange(Enumerable.Range(1, settlement.populationSize).Select(_ => new Agent(idCounter++, settlement)).ToArray());
+            agents = agents.Concat(Enumerable.Range(1, settlement.populationSize).Select(_ => new Agent(idCounter++, settlement)).ToDictionary(x => x.id, x => x)).ToDictionary(x => x.Key, x => x.Value);
         }
     }
 
@@ -57,6 +57,13 @@ public class Simulation
     {  // TEMP
         Console.WriteLine("-------------------------------------");
         Console.WriteLine("Number of Agents: " + agents.Count);
+        Console.WriteLine("-------------------------------------");
+    }
+
+    public void PrintSpecificAgentInfo(int id)
+    {  // TEMP
+        Console.WriteLine("-------------------------------------");
+        Console.WriteLine("Agents " + id + ": " + agents[id]); // Print out more detailed info eventually.
         Console.WriteLine("-------------------------------------");
     }
 
