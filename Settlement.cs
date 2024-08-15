@@ -41,8 +41,6 @@ public class Settlement
         This will be used by the Economy class by multiplying the prices */
         float initialEconomicHealth = (float)(new Random().NextDouble() + 0.5);
 
-        Console.WriteLine(name + " initialEconomicHealth = " + initialEconomicHealth);
-
         // Instantiate Economy w/ initial economic health
         economy = new Economy(initialEconomicHealth);
 

@@ -1,5 +1,6 @@
 
 
+using System.Collections.Generic;
 using System.Linq;
 
 public class Simulation
@@ -7,7 +8,7 @@ public class Simulation
 
     Settlement[] settlements;
 
-    Agent[] agents = [];
+    List<Agent> agents = new List<Agent>();
 
 
     public Simulation(int settlementCount)
@@ -18,11 +19,8 @@ public class Simulation
 
         foreach (Settlement settlement in settlements)
         {
-            agents.Concat(Enumerable.Range(1, settlement.populationSize).Select(_ => new Agent(idCounter++, settlement)).ToArray()).ToArray();
+            agents.AddRange(Enumerable.Range(1, settlement.populationSize).Select(_ => new Agent(idCounter++, settlement)).ToArray());
         }
-
-
-        Console.WriteLine("Here 1");
     }
 
     public void StartSimulation()
@@ -58,7 +56,7 @@ public class Simulation
     public void PrintAgentInfo()
     {  // TEMP
         Console.WriteLine("-------------------------------------");
-        Console.WriteLine("Number of Agents: " + agents.Length);
+        Console.WriteLine("Number of Agents: " + agents.Count);
         Console.WriteLine("-------------------------------------");
     }
 
