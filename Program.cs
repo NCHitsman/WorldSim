@@ -27,7 +27,7 @@ class Program
                 // Start, Pause, and End Simulation
                 case ConsoleKey.Enter:
                     if (!simRunning) {
-                        activeSimulation.StartSimulation(); // TODO fix that it can be started multiple times speeding it up
+                        activeSimulation.StartSimulation();
                         simRunning = true;
                         Console.WriteLine("Sim Running......");
                     } else {
