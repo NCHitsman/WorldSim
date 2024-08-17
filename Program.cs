@@ -3,7 +3,10 @@
 class Program
 {
 
-    private static bool runSim = true;
+    private static bool simRunning = false;
+
+    private static bool consoleLoop = true;
+
 
     static void Main()
     {
@@ -14,7 +17,7 @@ class Program
 
         Console.WriteLine("Press Enter To Start Sim......");
 
-        while (runSim)
+        while (consoleLoop)
         {
 
             ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
@@ -23,15 +26,27 @@ class Program
             {
                 // Start, Pause, and End Simulation
                 case ConsoleKey.Enter:
-                    activeSimulation.StartSimulation(); // TODO fix that it can be started multiple times speeding it up
-                    Console.WriteLine("Sim Running......");
+                    if (!simRunning) {
+                        activeSimulation.StartSimulation(); // TODO fix that it can be started multiple times speeding it up
+                        simRunning = true;
+                        Console.WriteLine("Sim Running......");
+                    } else {
+                        Console.WriteLine("Sim Already Running......");
+                    }
                     break;
                 case ConsoleKey.Spacebar:
-                    activeSimulation.PauseSimulation();
+                    if (simRunning){
+                        activeSimulation.PauseSimulation();
+                        simRunning = false;
+                    } else {
+                        activeSimulation.PauseSimulation();
+                        simRunning = true;
+                    }
                     break;
                 case ConsoleKey.Escape:
                     activeSimulation.EndSimulation();
-                    runSim = false;
+                    consoleLoop = false;
+                    simRunning = false; // Just a formality
                     Console.WriteLine("Sim Stopped......");
                     break;
 
