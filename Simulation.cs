@@ -30,7 +30,7 @@ public class Simulation
 
     public void PauseSimulation()
     {
-        TickSystem.PauseTickSystem();  //TODO Look into if this can cause a memory leak
+        TickSystem.PauseTickSystem();
     }
 
     public void EndSimulation()
